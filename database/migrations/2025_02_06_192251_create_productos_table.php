@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Illuminate\Validation\Rules\Unique;
 
 return new class extends Migration
 {
@@ -14,16 +13,15 @@ return new class extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->smallIncrements('id');
-            $table->string('codigo',10);
-            $table->string('nombre',70)->unique();
+            $table->string('codigo',64);
+            $table->string('nombre',100)->unique();
+            $table->string('descripcion',256)->nullable();
+            $table->decimal('precio_venta',total:6,places:2);
 
             $table->unsignedSmallInteger('categoria_id');
-
             $table->timestamps();
 
             $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
-
-
         });
     }
 

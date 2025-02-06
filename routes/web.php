@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Models\Categoria;
+use App\Models\Producto;
 
 Route::get('/', function () {
     return view('welcome');
@@ -54,5 +55,11 @@ Route::get('locales', function(){
 Route::get('categorias', function(){
     $categorias = Categoria::all();
     return $categorias;
+});
+
+Route::get('productos', function(){
+    // $producto = Producto::all();
+    $producto = Producto::with('categoria')->get();
+    return $producto;
 });
 
