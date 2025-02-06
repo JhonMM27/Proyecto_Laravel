@@ -44,7 +44,7 @@ Route::get('time', function(){
     return env('APP_TIMEZONE');
 });
 
-Route::get('local', function(){
+Route::get('locales', function(){
     return config('app.locale');
 });
 
