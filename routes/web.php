@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Categoria;
 
 Route::get('/', function () {
     return view('welcome');
@@ -50,5 +51,8 @@ Route::get('locales', function(){
 
 
 
-
+Route::get('categorias', function(){
+    $categorias = Categoria::all();
+    return $categorias;
+});
 
