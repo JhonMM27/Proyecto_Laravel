@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoriaController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Categoria;
 use App\Models\Producto;
@@ -10,6 +11,7 @@ Route::get('/', function () {
 });
 
 Route::resource('marcas',MarcaController::class);
+Route::resource('categorias',CategoriaController::class);
 
 
 
