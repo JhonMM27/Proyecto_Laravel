@@ -1,18 +1,70 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoriaController;
 use Illuminate\Support\Facades\Route;
 use App\Models\Categoria;
 use App\Models\Producto;
 use App\Http\Controllers\MarcaController;
+use App\Http\Controllers\ProductosController;
+use App\Http\Controllers\UserController;
+use Illuminate\Foundation\Auth\User;
+use App\Http\Controllers\CategoryController;
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+// Rutas públicas (Login)
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.attempt');
+
+// Rutas protegidas con autenticación
+Route::middleware(['auth'])->group(function () {
+    // Gestión de usuarios
+    Route::resource('user', UserController::class);
+
+    // Gestión de categorías
+    Route::resource('categorias', CategoriaController::class);
+
+    Route::resource('productos',ProductosController::class);
+
+    // Logout
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-Route::resource('marcas',MarcaController::class);
-Route::resource('categorias',CategoriaController::class);
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::resource('marcas',MarcaController::class);
+// Route::resource('categorias',CategoriaController::class);
+
+// Route::resource('productos',ProductosController::class);
+// Route::resource('user',UserController::class);
+
+// //Rutas públicas
+// Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+// Route::post('/login', [AuthController::class, 'login']);
+
+
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+
+//  //Rutas para usuarios autenticados
+// Route::middleware('auth')->group(function () {
+//     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+//     Route::resource('categorias',CategoriaController::class);
+//     Route::resource('productos',ProductosController::class);
+//     Route::get('/dashboard', function(){
+//         return view('dashboard');
+//     })->name('dashboard');
+// });
+
+
+
+// Route::resource('usuarios',UserController::class);
 
 
 // Route::get('/inicio', function () {

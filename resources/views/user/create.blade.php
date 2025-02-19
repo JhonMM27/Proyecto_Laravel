@@ -4,18 +4,40 @@
     <div class="container mt-3">
         <div class="card">
             <div class="card-header" >
-                Nueva Categorias 
+                Registro de usuarios
             </div>
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-12 table-responsive">
-                        <form action="{{route('categorias.store')}}" method="post">
+                        <form action="{{route('user.store')}}" method="post">
                             @csrf
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="form-group">
                                         <label for="nombre">Ingrese Nombre</label>
                                         <input type="text" name="nombre" class="form-control" required>
+                                        @error('nombre')
+                                            <small class="text-danger">{{$message}}</small>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                
+
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label for="nombre">Ingrese Email</label>
+                                        <input type="text" name="email" class="form-control" required>
+                                        @error('nombre')
+                                            <small class="text-danger">{{$message}}</small>
+                                        @enderror
+                                    </div>
+                                </div>
+                                
+                                <div class="col-lg-12">
+                                    <div class="form-group">
+                                        <label for="nombre">Ingrese Contraseña</label>
+                                        <input type="password" name="password" class="form-control" required>
                                         @error('nombre')
                                             <small class="text-danger">{{$message}}</small>
                                         @enderror

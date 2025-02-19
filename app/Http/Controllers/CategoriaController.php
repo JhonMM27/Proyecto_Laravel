@@ -79,7 +79,7 @@ class CategoriaController extends Controller
             $registro->delete();
             return redirect()->route('categorias.index')->with('mensaje','Registro '.$registro->nombre.' eliminado con exito');
         } catch (\Illuminate\Database\QueryException $e) {
-            return redirect()->route('categorias.index')->with('mensaje','Error al eliminar el registro porque esta siendo usado');
+            return redirect()->route('categorias.index')->with('error','Error al eliminar el registro porque esta siendo usado');
         }
     }
 }

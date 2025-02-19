@@ -26,6 +26,7 @@ class CategoriaRequest extends FormRequest
             'nombre' => 'required|min:3|max:50',
         ];
     }
+    
     public function messages(): array
     {
         return [

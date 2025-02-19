@@ -3,9 +3,9 @@
         <div class="container mt-3">
             <div class="card">
                 <div class="card-header" >
-                    <h2 class="text-primary text-center">@lang('main.categories')</h2>
+                    <h2 class="text-primary text-center">Usuarios</h2>
                     <div class="text-center">
-                        <a class="btn btn-success btn-center" href="{{route('categorias.create')}}">@lang('main.new')</a>
+                        <a class="btn btn-success btn-center" href="{{route('user.create')}}">@lang('main.new')</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -23,7 +23,7 @@
                     </div>                    
                     @endif
                     
-                    <form action="{{route('categorias.index')}}" method="GET">
+                    <form action="{{route('user.index')}}" method="GET">
                         <div class="input-group">
                             <input type="text" name="texto" placeholder="Categoria" class="form-control mt-2" value="{{$texto}} ">
                             <div class="input-group-append">
@@ -39,6 +39,7 @@
                                         <th>Opciones</th>
                                         <th>Id</th>  
                                         <th>Nombre</th>
+                                        <th>Email</th>
                                     </tr>
                                     
                                 </thead>
@@ -46,13 +47,14 @@
                                     @foreach($registros as $reg)
                                     <tr>
                                         <td>
-                                            <a href="{{route('categorias.edit',$reg->id)}}" class="btn btn-warning btm-sm">@lang('main.edit')</a>
+                                            <a href="{{route('user.edit',$reg->id)}}" class="btn btn-warning btm-sm">@lang('main.edit')</a>
                                             <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-eliminar-{{$reg->id}}">@lang('main.delete')</button>
                                         </td>
                                         <td>{{ $reg->id }}</td>
-                                        <td>{{ $reg->nombre }}</td>
+                                        <td>{{ $reg->name }}</td>
+                                        <td>{{ $reg->email }}</td>
                                     </tr>
-                                    @include('Categoria.delete')
+                                    @include('user.delete')
                                     @endforeach
                                 </tbody>
                             </table>

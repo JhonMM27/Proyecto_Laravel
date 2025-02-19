@@ -5,7 +5,7 @@
                 <div class="card-header" >
                     <h2 class="text-primary text-center">@lang('main.categories')</h2>
                     <div class="text-center">
-                        <a class="btn btn-success btn-center" href="{{route('categorias.create')}}">@lang('main.new')</a>
+                        <a class="btn btn-success btn-center" href="{{route('productos.create')}}">@lang('main.new')</a>
                     </div>
                 </div>
                 <div class="card-body">
@@ -23,7 +23,7 @@
                     </div>                    
                     @endif
                     
-                    <form action="{{route('categorias.index')}}" method="GET">
+                    <form action="{{route('productos.index')}}" method="GET">
                         <div class="input-group">
                             <input type="text" name="texto" placeholder="Categoria" class="form-control mt-2" value="{{$texto}} ">
                             <div class="input-group-append">
@@ -38,22 +38,36 @@
                                     <tr>
                                         <th>Opciones</th>
                                         <th>Id</th>  
+                                        <th>Codigo</th>  
                                         <th>Nombre</th>
+                                        <th>Descripcion</th>
+                                        <th>Precio</th>
+                                        <th>Categoria</th>
                                     </tr>
                                     
                                 </thead>
                                 <tbody>
-                                    @foreach($registros as $reg)
+                                    
+                                    @foreach ($categorias as $cat && $categorias as cat)
                                     <tr>
                                         <td>
-                                            <a href="{{route('categorias.edit',$reg->id)}}" class="btn btn-warning btm-sm">@lang('main.edit')</a>
-                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-eliminar-{{$reg->id}}">@lang('main.delete')</button>
+                                            <a href="{{route('productos.edit',$pro->id)}}" class="btn btn-warning btm-sm">@lang('main.edit')</a>
+                                            <button class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-eliminar-{{$pro->id}}">@lang('main.delete')</button>
                                         </td>
-                                        <td>{{ $reg->id }}</td>
-                                        <td>{{ $reg->nombre }}</td>
+                                        <td>{{ $pro->id }}</td>
+                                        <td>{{ $pro->codigo}}</td>
+                                        <td>{{ $pro->nombre}}</td>
+                                        <td>{{ $pro->descripcion}}</td>
+                                        <td>{{ $pro->precio}}</td>
+                                        @if ($cat->id == $pro->categoria_id)
+                                            
+                                        <td>{{ $cat->nombre}}</td>
+                                        @endif
+                                        
                                     </tr>
-                                    @include('Categoria.delete')
                                     @endforeach
+                                    {{-- @include('Categoria.delete') --}}
+                                    
                                 </tbody>
                             </table>
                             <div class="d-flex justify-content-center align-items-center height-100">
